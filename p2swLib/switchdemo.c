@@ -6,12 +6,12 @@
 int
 main()
 {
-  p2sw_init(1);
+  p2sw_init(15);
   or_sr(0x8);			/* GIE (enable interrupts) */
 
   P1DIR |= RED_LED;
   for(;;) {
-    P1OUT = (1 & p2sw_read());
+    P1OUT = ((1<<1) & p2sw_read());
   }
 }
 

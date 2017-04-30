@@ -7,13 +7,19 @@ LDFLAGS		= -L../lib -L/opt/ti/msp430_gcc/include/
 CC              = msp430-elf-gcc
 AS              = msp430-elf-gcc -mmcu=${CPU} -c
 
-all: drawLanes.elf
+all: drawLanes.elf carGame.elf
 
 #additional rules for files
 drawLanes.elf: ${COMMON_OBJECTS} drawLanes.o
 	${CC} ${CFLAGS} ${LDFLAGS} -o $@ $^ -lTimer -lLcd -lShape -lCircle -lp2sw
 
-load: drawLanes.elf
+carGame.elf: ${COMMON_OBJECTS} gameMain.o drawMenus.o
+	${CC} ${CFLAGS} ${LDFLAGS} -o $@ $^ -lTimer -lLcd -lShape -lCircle -lp2sw
+
+load1: carGame.elf
+	mspdebug rf2500 "prog $^"
+
+load2: drawLanes.elf
 	mspdebug rf2500 "prog $^"
 
 clean:
