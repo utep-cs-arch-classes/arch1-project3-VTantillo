@@ -10,13 +10,11 @@
 
 char* displayScore(int score);
 
-//int redrawScreen = 1;
-
 int score = 0;
 
 u_char state; // 1 for splash, 2 for controls, 3 for play
 
-static u_int seed = 0;
+static u_int seed = 0; // Was going to be used by the playGame to generate which cones were up.
 
 void main() {
   configureClocks();
@@ -24,7 +22,6 @@ void main() {
   shapeInit();
   p2sw_init(0xf);
 
-  //enableWDTInterrupts();
   or_sr(0x8);
   
   state = 0; // Initially should show the splash screen
@@ -43,28 +40,27 @@ void main() {
     switch4 = (switches & (1 << 3)) ? 0 : 1;
 
     // Make this switch statement my assm. code
+    //stateMachine(state);
+    
     switch(state) {
-    case 1:
-      if (switch1) {
+    case 1:  // On splash screen
+      if (switch1) { // Start playing game
 	state = 3;
-	playGame(); // going to need to change this for actually playing the game
-      } else if (switch2) {
+	playGame();
+      } else if (switch2) { // decrease seed in the background
 	seed--;
-      } else if (switch3) {
+      } else if (switch3) { // increase seed in the background
 	seed++;
-      } else if (switch4) {
+      } else if (switch4) { // go to the controls screen
 	state = 2;
 	drawControlsScreen();
       }
       break;
-    case 2:
-      if (switch1) {
+    case 2:  // On the controls screen
+      if (switch1) {  // Go back to spalsh screen
 	state = 1;
 	drawSplashScreen();
       }
-      break;
-    case 3:
-      // Put logic for playing the game here
       break;
     default:
       state = 1;

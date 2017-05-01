@@ -32,10 +32,12 @@ void drawControlsScreen() {
   drawString5x7(5, 25, "to the left.", COLOR_RED, COLOR_BLUE);
   drawString5x7(5, 40, "Switch 4 moves car", COLOR_RED, COLOR_BLUE);
   drawString5x7(5, 50, "to the right.", COLOR_RED, COLOR_BLUE);
-  drawString5x7(5, 65, "Switch 2 increases", COLOR_RED, COLOR_BLUE);
-  drawString5x7(5, 75, "the car's speed.", COLOR_RED, COLOR_BLUE);
-  drawString5x7(5, 90, "Switch 3 decreases", COLOR_RED, COLOR_BLUE);
-  drawString5x7(5, 100, "the car's speed.", COLOR_RED, COLOR_BLUE);
+
+  // Didn't have time to implement this
+  //drawString5x7(5, 65, "Switch 2 increases", COLOR_RED, COLOR_BLUE);
+  //drawString5x7(5, 75, "the car's speed.", COLOR_RED, COLOR_BLUE);
+  //drawString5x7(5, 90, "Switch 3 decreases", COLOR_RED, COLOR_BLUE);
+  //drawString5x7(5, 100, "the car's speed.", COLOR_RED, COLOR_BLUE);
   drawString5x7(5, (height-10), "Back", COLOR_RED, COLOR_BLUE);
   
 }
