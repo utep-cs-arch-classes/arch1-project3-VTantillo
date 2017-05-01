@@ -207,6 +207,7 @@ Region roadFence;
 
 void playGame() {
   shapeInit();
+  buzzer_init();
   
   layerInit(&layer0);
   layerDraw(&layer0);
@@ -239,10 +240,10 @@ void __interrupt_vec(WDT_VECTOR) WDT() {
     /// Moves the car back and forth across the bottom of the screen
     if(sw1) {
       ml1.velocity.axes[0] = -2;
-      setPeriod(500);
+      setPeriod(4000);
     } else if(sw4) {
       ml1.velocity.axes[0] = 2;
-      setPeriod(500);
+      setPeriod(5000);
     } else {
       ml1.velocity.axes[0] = 0;
       setPeriod(0);
