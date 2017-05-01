@@ -2,13 +2,17 @@
 #include <libTimer.h>
 #include <lcdutils.h>
 #include <lcddraw.h>
-#include <p2switches.h>
 #include <shape.h>
-#include <abCircle.h>
+#include <p2switches.h>
 
 #include "drawMenus.h"
+#include "playGame.h"
 
-int redrawScreen = 1;
+char* displayScore(int score);
+
+//int redrawScreen = 1;
+
+int score = 0;
 
 u_char state; // 1 for splash, 2 for controls, 3 for play
 
@@ -17,11 +21,12 @@ static u_int seed = 0;
 void main() {
   configureClocks();
   lcd_init();
+  shapeInit();
   p2sw_init(0xf);
 
   //enableWDTInterrupts();
   or_sr(0x8);
-
+  
   state = 0; // Initially should show the splash screen
   
   u_int switches;   //value from switch library
@@ -37,11 +42,12 @@ void main() {
     switch3 = (switches & (1 << 2)) ? 0 : 1;
     switch4 = (switches & (1 << 3)) ? 0 : 1;
 
+    // Make this switch statement my assm. code
     switch(state) {
     case 1:
       if (switch1) {
 	state = 3;
-	drawGameScreen(); // going to need to change this for actually playing the game
+	playGame(); // going to need to change this for actually playing the game
       } else if (switch2) {
 	seed--;
       } else if (switch3) {
@@ -66,17 +72,6 @@ void main() {
       break;
     }
   }
-  /*
-  char str[5];
-  
-  for (;;) {
-    switches = p2sw_read();
-    for (i = 0; i < 4; i++) {
-      str[i] = (switches & (1<<i)) ? '-' : '0' + i;
-    }
-    str[4] = 0;
-    drawString5x7(20, 20, str, COLOR_GREEN, COLOR_BLUE);
-  }
-  */
-}
+
+}   // end main
 

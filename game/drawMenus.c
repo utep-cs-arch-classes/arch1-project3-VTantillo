@@ -20,8 +20,8 @@ void drawGameScreen() {
   
   drawString5x7(5, (height-10), "L", COLOR_RED, COLOR_BLUE);
   drawString5x7((width-10), (height-10), "R", COLOR_RED, COLOR_BLUE);
-  drawString5x7(((width/2) - 30), (height-10), "Up", COLOR_RED, COLOR_BLUE);
-  drawString5x7(((width/2) + 10), (height-10), "Dwn", COLOR_RED, COLOR_BLUE);
+  drawString5x7(((width/2) - 30), (height-10), "+", COLOR_RED, COLOR_BLUE);
+  drawString5x7(((width/2) + 10), (height-10), "-", COLOR_RED, COLOR_BLUE);
 }
 
 void drawControlsScreen() {

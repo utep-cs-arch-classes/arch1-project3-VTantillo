@@ -147,7 +147,6 @@ void mlAdvance(MovLayer *ml, Region *fence)
   } /**< for ml */
 }
 
-
 u_int bgColor = COLOR_BLUE;     /**< The background color */
 int redrawScreen = 1;           /**< Boolean for whether screen needs to be redrawn */
 
