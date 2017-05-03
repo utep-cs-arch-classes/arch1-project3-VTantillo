@@ -160,16 +160,16 @@ void mlAdvance(Region *fence, MovLayer *cones, MovLayer *car)
 
     if (coneBoundary.botRight.axes[1] < fence->botRight.axes[1]) {
       score++;
-      if (cones == &ml2) {
+      if (&cones == &ml2) {
 	Vec2 conePos = {cone1x, coneY};
 	cones->layer->posNext = conePos;
-      } else if (cones == &ml3) {
+      } else if (&cones == &ml3) {
 	Vec2 conePos = {cone2x, coneY};
 	cones->layer->posNext = conePos;
-      } else if (cones == &ml4) {
+      } else if (&cones == &ml4) {
 	Vec2 conePos = {cone3x, coneY};
 	cones->layer->posNext = conePos;
-      } else if (cones == &ml5) {
+      } else if (&cones == &ml5) {
 	Vec2 conePos = {cone4x, coneY};
 	cones->layer->posNext = conePos;
       }
@@ -182,6 +182,7 @@ void mlAdvance(Region *fence, MovLayer *cones, MovLayer *car)
   }
 }
 */
+
  // Version of mlAdvance given in demos
 void mlAdvance(MovLayer *ml, Region *fence)
 {
@@ -201,6 +202,7 @@ void mlAdvance(MovLayer *ml, Region *fence)
     ml->layer->posNext = newPos;
   } /**< for ml */
 }
+
 
 u_int bgColor = COLOR_WHITE;
 Region roadFence;
